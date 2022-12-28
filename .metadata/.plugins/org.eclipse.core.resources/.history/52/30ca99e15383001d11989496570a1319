@@ -1,0 +1,21 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+ <%@ page import = "java.util.*" %>
+ <%@ page import = "DTO.find" %>
+ 
+    <%
+   	String result = (String)request.getAttribute("result");
+    String resvno = (String)request.getAttribute("resvno");
+    find f = new find();
+    f = (find)request.getAttribute("find");
+     %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+package DAO;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+import javax.servlet.http.HttpServletRequest;
+
+import DTO.logininfo;
+
+public class wk_DAO {
+
+	final String JDBC_DRIVER = "oracle.jdbc.driver.OracleDriver";
+	final String JDBC_URL = "jdbc:oracle:thin:@localhost:1521:xe";
+	
+	public Connection open() { // DB와 연결 수행
+		Connection conn = null;
+		try {
+			Class.forName(JDBC_DRIVER);
+			conn = DriverManager.getConnection(JDBC_URL, "test", "test1234");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return conn; 
+	}
+	
+	public void signUp(logininfo l) throws Exception {
+		Connection conn = open();
+		String sql = "insert into logininfo values (login_seq.nextval, ?, ?, ?)";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		try {
+			pstmt.setString(1, l.getUser_id());
+			pstmt.setString(2, l.getUser_pwd());
+			pstmt.setString(3, l.getUser_email());
+			pstmt.executeUpdate();	
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		conn.close();
+		pstmt.close();
+	}
+	
+	public logininfo signIn(HttpServletRequest request) throws Exception{
+		Connection conn = open();
+		logininfo l = new logininfo();
+		String user_id = request.getParameter("user_id");
+		String user_pwd = request.getParameter("user_pwd");
+		String sql ="select user_id, user_pwd, user_number from logininfo where user_id = ? and user_pwd = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, user_id);
+			pstmt.setString(2, user_pwd); 			
+			ResultSet rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				l.setUser_id(rs.getString(1));
+				l.setUser_pwd(rs.getString(2));
+				l.setUser_number(rs.getInt(3));
+			}
+		conn.close();
+		pstmt.close();
+		return l;
+	}
+	
+	public void insertWorkout(HttpServletRequest request) throws SQLException {
+		Connection conn = open();
+		int user_num = Integer.parseInt(request.getParameter("user_number"));
+		String wk_part = request.getParameter("wk_part");
+		
+		String sql = "insert into workout values(wk_seq.nextval, sysdate, ?, "+user_num+")";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		try {
+			pstmt.setString(1, wk_part);
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+		conn.close();
+		pstmt.close();
+	}
+	
+}

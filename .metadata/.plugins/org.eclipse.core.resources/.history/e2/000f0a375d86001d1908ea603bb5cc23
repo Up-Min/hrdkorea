@@ -1,0 +1,28 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="workout">
+		<div class="day">
+			<table>
+				<tr>
+				<th> 오늘 운동 기록</th>
+				<th> 
+				<input type = "text" name = "wk_part" maxlength = "20">
+				 </th>
+				</tr>
+			
+			
+			
+			</table>
+		</div>
+	</div>
+
+
+</body>
+</html>

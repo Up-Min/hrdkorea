@@ -1,0 +1,59 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@page import = "java.util.*" %>
+    <%@page import = "DTO.reserv" %>
+    
+    <%
+    request.setCharacterEncoding("UTF-8");
+    ArrayList<reserv> list = new ArrayList<reserv> ();
+    list = (ArrayList<reserv>)request.getAttribute("list");
+    %>
+    
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<%@ include file = "Header.jsp" %>
+	<section>
+		<%for (reserv r : list) {%>
+		<% out.print(r); %>
+		<div class = "head"><h2> 예약번호 :  <%=r.getResvno()%>님의 접종예약조회  </h2></div>
+		<div class = "wrap"> 
+		<table style = "width : 700px">
+		<tr>
+		<th> 이름 </th>
+		<th> 주민번호 </th>
+		<th> 성별 </th>
+		<th> 전화번호 </th>
+		<th> 예약일자 </th>
+		<th> 예약시간 </th>
+		<th> 병원명 </th>
+		<th> 대표전화 </th>
+		<th> 병원주소 </th>
+		<th> 백신종류 </th>
+		</tr>
+		
+		<tr>
+		<td><%=r.getPname() %></td>
+		<td><%=r.getJumin() %></td>
+		<td><%=r.getGender()%></td>
+		<td><%=r.getTel()   %></td>
+		<td><%=r.getResvdate()%></td>
+		<td><%=r.getResvtime() %></td>
+		<td><%=r.getHospname()%></td>
+		<td><%=r.getHosptel()%></td>
+		<td><%=r.getHospaddr()%></td>
+		</tr>
+		
+		</table>
+		</div>
+		<%} %>
+	
+	</section>
+	<%@ include file =  "Footer.jsp" %>
+
+</body>
+</html>

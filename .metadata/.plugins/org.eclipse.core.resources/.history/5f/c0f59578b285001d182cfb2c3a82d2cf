@@ -1,0 +1,16 @@
+package DTO;
+
+public class workout {
+
+	private int wk_number;
+	private String wk_date;
+	private String wk_part;
+	private String wk_name;
+	private int wk_weight;
+	private int wk_reps;
+	private int wk_sets;
+	
+	
+	
+	
+}

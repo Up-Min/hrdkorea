@@ -1,0 +1,171 @@
+package DAO;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import DTO.Member;
+import DTO.Vote;
+import DTO.Rank;
+
+public class VoteDAO {
+	Connection con = null;
+	PreparedStatement ps = null;
+	ResultSet rs = null;
+	
+	public static Connection getConnection() throws Exception {
+		Class.forName("oracle.jdbc.OracleDriver");
+		Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "gisa", "gisa1234");
+		return con;
+	}
+	
+	public String list(HttpServletRequest request, HttpServletResponse response) {
+		ArrayList<Member> list = new ArrayList<Member>();
+		try {
+			con = getConnection();
+			String sql = "SELECT a.m_no, a.m_name, "
+	+ "decode(a.p_code, 'P1', 'A정당', 'P2', 'B정당', 'P3', 'C정당', 'P4', 'D정당', 'P5', 'E정당') p_code, "
+	+ "decode (a.p_school, '1', '고졸', '2', '학사', '3', '석사', '4', '박사') p_school, "
+	+ "a.m_jumin, a.m_city, b.p_tel1||'-'||b.p_tel2||'-'||b.p_tel3 as p_tel "
+	+ "FROM tbl_member_202005 a, tbl_party_202005 b "
+	+ "WHERE a.p_code = b.p_code";
+		
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+			Member member = new Member();
+			member.setM_no(rs.getString(1));
+			member.setM_name(rs.getString(2));
+			member.setP_code(rs.getString(3));
+			member.setP_school(rs.getString(4));
+			member.setM_jumin(rs.getString(5));
+			member.setM_city(rs.getString(6));
+			member.setP_tel(rs.getString(7));
+			
+			list.add(member);
+			}
+			request.setAttribute("list", list);
+			
+			con.close();
+			ps.close();
+			rs.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "list.jsp";
+	}
+	
+	public String result(HttpServletRequest request, HttpServletResponse response) {
+		ArrayList<Vote> list = new ArrayList<Vote>();
+		try {
+			con = getConnection();
+			String sql = " select v_name, "
+					+ "'19'||substr(v_jumin,1,2)||'년'||substr(v_jumin,3,2)||'월'||substr(v_jumin,4,2)||'일생' as v_birth, "
+					+ "(2020-('19'||substr(v_jumin,1,2)))+1 as v_age, "
+					+ "decode (substr(v_jumin,7,1), '1', '남', '2', '여', '3', '남', '4', '여') as v_gender, "
+					+ "m_no, "
+					+ "substr(v_time,1,2)||':'||substr(v_time,3,2) as v_time, "
+					+ "decode (v_confirm, 'N', '미확인', 'Y', '확인') as v_confirm from tbl_vote_202005";
+			
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+			Vote Vote = new Vote();
+			Vote.setV_name(rs.getString(1));
+			Vote.setV_birth(rs.getString(2));
+			Vote.setV_age(rs.getString(3));
+			Vote.setV_gender(rs.getString(4));
+			Vote.setM_no(rs.getString(5));
+			Vote.setV_time(rs.getString(6));
+			Vote.setV_confirm(rs.getString(7));
+			
+			list.add(Vote);
+			}
+			request.setAttribute("list", list);
+			
+			con.close();
+			ps.close();
+			rs.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
+		return "Result.jsp";
+	} 
+	
+	public String Rank(HttpServletRequest request, HttpServletResponse response) {
+		ArrayList<Rank> list = new ArrayList<Rank>();
+		try {
+			con = getConnection();
+			String sql = "select a.m_no, a.m_name, b.count from tbl_member_202005 a, (select count(m_no) as count, m_no from tbl_vote_202005 where v_confirm = 'Y' group by m_no) b where a.m_no = b.m_no order by count desc";
+			
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				Rank rank = new Rank();
+				rank.setM_no(rs.getString(1));
+				rank.setM_name(rs.getString(2));
+				rank.setCount(rs.getString(3));
+				
+				list.add(rank);
+			}
+			request.setAttribute("list", list);
+			con.close();
+			ps.close();
+			rs.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "Rank.jsp";
+	}
+	
+
+	
+	public int insert(HttpServletRequest request, HttpServletResponse response) {
+		String v_jumin = request.getParameter("v_jumin");
+		String v_name  = request.getParameter("v_name");
+		String m_no = request.getParameter("m_no");
+		String v_time = request.getParameter("v_time");
+		String v_area = request.getParameter("v_area");
+		String v_confirm = request.getParameter("v_confirm"); 
+		int result = 0;
+		
+		System.out.println("1");
+		
+		try {
+			con = getConnection();
+			String sql = "insert into tbl_vote_202005 values (?,?,?,?,?,?)";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, v_jumin);
+			ps.setString(2, v_name);
+			ps.setString(3, m_no);
+			ps.setString(4, v_time);
+			ps.setString(5, v_area);
+			ps.setString(6, v_confirm);
+			
+			result = ps.executeUpdate();
+			System.out.println(result);
+			
+			con.close();
+			ps.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	
+	
+}
