@@ -5,10 +5,10 @@ public class workout {
 	private int wk_number;
 	private String wk_date;
 	private String wk_part;
-	private String wk_name;
-	private int wk_weight;
-	private int wk_reps;
-	private int wk_sets;
+	private String ex_name;
+	private int ex_weight;
+	private int ex_reps;
+	private int ex_sets;
 	
 	public int getWk_number() {
 		return wk_number;
@@ -28,30 +28,31 @@ public class workout {
 	public void setWk_part(String wk_part) {
 		this.wk_part = wk_part;
 	}
-	public String getWk_name() {
-		return wk_name;
+	public String getEx_name() {
+		return ex_name;
 	}
-	public void setWk_name(String wk_name) {
-		this.wk_name = wk_name;
+	public void setEx_name(String ex_name) {
+		this.ex_name = ex_name;
 	}
-	public int getWk_weight() {
-		return wk_weight;
+	public int getEx_weight() {
+		return ex_weight;
 	}
-	public void setWk_weight(int wk_weight) {
-		this.wk_weight = wk_weight;
+	public void setEx_weight(int ex_weight) {
+		this.ex_weight = ex_weight;
 	}
-	public int getWk_reps() {
-		return wk_reps;
+	public int getEx_reps() {
+		return ex_reps;
 	}
-	public void setWk_reps(int wk_reps) {
-		this.wk_reps = wk_reps;
+	public void setEx_reps(int ex_reps) {
+		this.ex_reps = ex_reps;
 	}
-	public int getWk_sets() {
-		return wk_sets;
+	public int getEx_sets() {
+		return ex_sets;
 	}
-	public void setWk_sets(int wk_sets) {
-		this.wk_sets = wk_sets;
+	public void setEx_sets(int ex_sets) {
+		this.ex_sets = ex_sets;
 	}
+
 	
 	
 	

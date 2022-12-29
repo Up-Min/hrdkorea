@@ -7,11 +7,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedHashSet;
 
 import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.http.HttpServletRequest;
 
 import DTO.logininfo;
+import DTO.workout;
 
 public class wk_DAO {
 
@@ -66,6 +68,80 @@ public class wk_DAO {
 		return l;
 	}
 	
+	public ArrayList<workout> list (HttpServletRequest request) throws SQLException {
+		ArrayList<workout> workoutlist = new ArrayList<>();
+		String id = request.getParameter("id");
+		int num = Integer.parseInt(request.getParameter("num"));
+		System.out.println(num);
+		
+		Connection conn = open();
+		String sql = "select a.wk_date, a.wk_part, b.ex_name, b.ex_weight, b.ex_reps, b.ex_sets, b.wk_number from (select * from workout where user_number =?) a join exercise b on a.wk_number = b.wk_number order by a.wk_part";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, num);
+		ResultSet rs = pstmt.executeQuery();
+		
+		while(rs.next()) {
+			workout w = new workout();
+			w.setWk_date(rs.getString(1));
+			w.setWk_part(rs.getString(2));
+			w.setEx_name(rs.getString(3));
+			w.setEx_weight(rs.getInt(4));
+			w.setEx_reps(rs.getInt(5));
+			w.setEx_sets(rs.getInt(6));
+			w.setWk_number(rs.getInt(7));			
+			workoutlist.add(w);
+		}
+		conn.close();
+		pstmt.close();
+		return workoutlist;	
+	}
+	
+	public ArrayList<Integer> getWkNumber (HttpServletRequest request) throws SQLException {
+		ArrayList<Integer> WkNumList = new ArrayList<>();
+		int num = Integer.parseInt(request.getParameter("num"));
+		Connection conn = open();
+		String sql = "select b.wk_number from (select * from workout where user_number = ? ) a join exercise b on a.wk_number = b.wk_number order by a.wk_part";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, num);
+		ResultSet rs = pstmt.executeQuery();
+		while(rs.next()) {
+			WkNumList.add(rs.getInt(1));
+		}
+		conn.close();
+		pstmt.close();
+		return WkNumList;
+	}
+	
+	public ArrayList <workout> insertWkNumber(HttpServletRequest request,int num) throws SQLException {
+		int usnum = Integer.parseInt(request.getParameter("num"));
+		System.out.println(usnum);
+
+		Connection conn = open();
+		String sql = "select a.wk_date, a.wk_part, b.ex_name, b.ex_weight, b.ex_reps, b.ex_sets, b.wk_number from (select * from workout where user_number = ?) a join exercise b on a.wk_number = b.wk_number where b.wk_number = ? order by a.wk_part";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		ArrayList <workout> list = new ArrayList<>();
+		
+			pstmt.setInt(1, usnum);
+			pstmt.setInt(2, num);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				workout w = new workout();
+				w.setWk_date(rs.getString(1));
+				w.setWk_part(rs.getString(2));
+				w.setEx_name(rs.getString(3));
+				w.setEx_weight(rs.getInt(4));
+				w.setEx_reps(rs.getInt(5));
+				w.setEx_sets(rs.getInt(6));
+				w.setWk_number(rs.getInt(7));			
+				list.add(w);	
+		}
+		conn.close();
+		pstmt.close();
+		return list;
+		
+	}
+	
+	
 	public void insertWorkout(HttpServletRequest request) throws SQLException {
 		System.out.println("insertWorkout");
 		Connection conn = open();
@@ -103,7 +179,6 @@ public class wk_DAO {
 		pstmt.close();
 		return workoutnum;
 	}
-	
 	
 	public void insertExercise(HttpServletRequest request, String ex_name, String ex_weight, String ex_reps, String ex_sets) throws SQLException {
 		System.out.println("insertExercise");

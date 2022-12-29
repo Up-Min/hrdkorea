@@ -82,8 +82,10 @@
 			사람이 자신의 몸이 가질 수 있는 마음과 강함을 알지 못하고 <br> 늙어버리는 것은 안타까운 일이다 <br>
 			<b> 소크라테스 </b>
 		</p>
-
+		
 	</div>
+	
+			<button> 홈으로 </button>
 
 	<script type="text/javascript" src="./script.js"></script>
 </body>
