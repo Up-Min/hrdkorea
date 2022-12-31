@@ -9,7 +9,15 @@ public class workout {
 	private int ex_weight;
 	private int ex_reps;
 	private int ex_sets;
+	private int ex_number;
 	
+	
+	public int getEx_number() {
+		return ex_number;
+	}
+	public void setEx_number(int ex_number) {
+		this.ex_number = ex_number;
+	}
 	public int getWk_number() {
 		return wk_number;
 	}

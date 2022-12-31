@@ -27,7 +27,11 @@
 	 f.submit();
  }
  
- function chk_cancel(){
-	 alert("하시던 운동을 취소하시겠습니까?");
-	 location.href = "/jsp_workout/main";
+ function chk_cancel(user_id, user_pwd){
+	 const result = confirm("하시던 운동을 취소하시겠습니까?");
+	 if(result){		 
+	 location.href = "/jsp_workout/main?user_id="+user_id +"&user_pwd="+user_pwd;
+	 }else{
+		 return false;
+	 }
  }

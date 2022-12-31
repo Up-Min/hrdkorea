@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="./css/style.css" />
 </head>
 <body>
 	<%
@@ -14,6 +15,9 @@
 
 	<div class="workout">
 		<form name="wk_insert" action="insert">
+		<input type="hidden" name="user_id" value="${id}"> 
+		<input type="hidden" name="num" value="${num}">
+		<input type="hidden" name="user_pwd" value="${pwd}">
 			<div class="day">
 				<table>
 					<tr>
@@ -71,7 +75,7 @@
 					<tr>
 						<td colspan="1">
 							<button onclick="chk_form(); return false;">운동 종료</button>
-							<button onclick="chk_cancel(); return false;">운동 취소</button>
+							<button onclick="chk_cancel(${id},${pwd}); return false;">운동 취소</button>
 						</td>
 					</tr>
 
@@ -85,8 +89,9 @@
 		
 	</div>
 	
-			<button> 홈으로 </button>
+			<button onclick="location.href = 'signin?user_id=${id}&user_pwd=${pwd}'"> 홈으로 </button>
 
 	<script type="text/javascript" src="./script.js"></script>
 </body>
+
 </html>

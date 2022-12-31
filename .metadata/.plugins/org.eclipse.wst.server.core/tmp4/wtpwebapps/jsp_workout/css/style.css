@@ -1,4 +1,6 @@
 @charset "UTF-8";
+@import url('./reset.css');
+
 * { box-sizing: border-box; }
 .video-background {
   background: #000;
@@ -29,12 +31,7 @@
 @media all and (max-width: 500px) {
 .vid-info .acronym { display: none; }
 }
-body{
-  margin:0;
-  color:#6a6f8c;
-  background:#c8c8c8;
-  font:600 16px/18px 'Open Sans',sans-serif;
-}
+
 *,:after,:before{box-sizing:border-box}
 .clearfix:after,.clearfix:before{content:'';display:table}
 .clearfix:after{clear:both;display:block}
@@ -168,6 +165,27 @@ a{color:inherit;text-decoration:none}
 }
 .login-html .sign-up:checked + .tab + .login-form .sign-up-htm{
   transform:rotate(0);
+}
+
+body{
+  margin:0;
+  color:#6a6f8c;
+  background:#c8c8c8;
+  font:600 16px/18px 'Open Sans',sans-serif;
+}
+
+.all{
+	top : 100px;
+	width: 800px;
+	
+}
+
+ul{
+	list-style: none;
+}
+
+tr:hover{
+	cursor: pointer;
 }
 
 .hr{

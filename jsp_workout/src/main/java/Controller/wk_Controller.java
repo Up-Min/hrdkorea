@@ -57,15 +57,21 @@ public class wk_Controller extends HttpServlet {
 		
 		
 		switch (command) {
-		case "/index" : site = "index.jsp"; break;
-		case "/signup": site = signUp(request); break;
-		case "/signin": site = signIn(request, response); break;
-		case "/main" : site = "main.jsp"; break;
-		case "/start" : site = "wk_insert.jsp"; break;
-		case "/insert" : site = insertWorkout(request); break;
+		case "/index" : site = "index.jsp"; break; // 로그인 페이지
+		case "/signup": site = signUp(request); break; // 회원가입
+		case "/signin": site = signIn(request, response); break; // 로그인
+		case "/getwk" : site = getWkNumber(request); break; // 회원별 운동번호 + 운동번호별 운동
+		case "/main" : site = "main.jsp"; break; // 메인페이지 (회원 운동 목록)
+		
+		case "/start" : site = start(request); break; // 신규 운동 작성 페이지
+		case "/insert" : site = insertWorkout(request); break; // 운동 입력
 		case "/tolist" : site = list(request); break;
+		case "/wklist" : site = wklist(request); break;
 		case "/list" : site = "wk_list.jsp"; break;
-		case "/getwk" : site = getWkNumber(request); break;
+		case "/edit" : site = getForEdit(request); break;
+		case "/update" : site = update(request,response); break;
+		
+		case "/delete" : site = delete(request); break;
 		}
 		
 		if(site.startsWith("redirect:/")) { // "" 안에 시작하는 문자열을 찾아준다.
@@ -78,6 +84,7 @@ public class wk_Controller extends HttpServlet {
 	}
 	
 	public String signUp(HttpServletRequest request) {
+		System.out.println("Cont SignUp");
 		logininfo l = new logininfo();
 		try {
 			BeanUtils.populate(l, request.getParameterMap());
@@ -90,6 +97,7 @@ public class wk_Controller extends HttpServlet {
 	}
 	
 	public String signIn(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("Cont signIn");
 		try {
 			String id = request.getParameter("user_id");
 			String num = request.getParameter("user_number");
@@ -98,6 +106,8 @@ public class wk_Controller extends HttpServlet {
 			if(id.equals(l.getUser_id()))  {
 				request.setAttribute("id", l.getUser_id());
 				request.setAttribute("num",l.getUser_number());
+				request.setAttribute("pwd", l.getUser_pwd());
+				System.out.println("정상 로그인");
 				return "main";
 			}else {
 				response.setContentType("text/html; charset=UTF-8");
@@ -106,38 +116,21 @@ public class wk_Controller extends HttpServlet {
 				out.print("alert('로그인 정보가 정확하지 않습니다.'); location.href = 'index.jsp';");
 				out.print("</script>");
 				out.flush();
-				
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("con_signin");
-		return "main";
+		System.out.println("로그인 에러");
+		return "index";
 	}
 	
-	public String list(HttpServletRequest request) {
-		String id = request.getParameter("id");
-		String num = request.getParameter("num");
-		System.out.println("id" +id);
-		System.out.println("num"+num);		
-		request.setAttribute("id", id);
-		request.setAttribute("num", num);
-		List<workout> list;
-		
-		try {
-			list = dao.list(request);
-			request.setAttribute("list", list);
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}	
-		return "list";
-	}
-	
-	public String getWkNumber(HttpServletRequest request) {
+	public String getWkNumber(HttpServletRequest request) { //사용자 운동번호 + 운동번호에 따른 목록 
+		System.out.println("Cont getWknumber");
 		ArrayList<Integer> Wklist;
 		String num = request.getParameter("num");
 		request.setAttribute("num", num);
+		String pwd = request.getParameter("pwd");
+		request.setAttribute("pwd", pwd);
 		String id = request.getParameter("id");
 		request.setAttribute("id", id);
 		try {
@@ -147,28 +140,140 @@ public class wk_Controller extends HttpServlet {
 			for(int i : Wklist) {
 				hashwk.add(i);
 			}
-			request.setAttribute("hashwk", hashwk);
-			
+			request.setAttribute("hashwk", hashwk);	
 			System.out.println(hashwk);
 			
 			ArrayList<Integer> wknum = new ArrayList<Integer>(hashwk);
 			
 			for(int i=0; i<wknum.size(); i++) {
 				List<workout> list = dao.insertWkNumber(request, wknum.get(i));
-				request.setAttribute("wklist"+i+"", list);				
+				request.setAttribute("wklist"+i+"", list);
 			}
-			
-			
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
+		return "main";
+//		return "list";
+	}
+	
+	public String list(HttpServletRequest request) { //사용자 전체 운동 목록
+		System.out.println("Cont list");	
+		int user_num = Integer.parseInt(request.getParameter("user_num"));
+		int work_num = Integer.parseInt(request.getParameter("wk_no"));
+		String id = request.getParameter("user_id");
+		String pwd = request.getParameter("user_pwd");
+		
+		List<workout> list;	
+		try {
+			list = dao.list(user_num, work_num);
+			request.setAttribute("list", list);
+			request.setAttribute("user_num", user_num);
+			request.setAttribute("work_num", work_num);
+			request.setAttribute("user_id", id);
+			request.setAttribute("user_pwd", pwd);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
 		return "list";
 	}
 	
+	public String wklist (HttpServletRequest request) {
+		System.out.println("Cont wklist");
+	
+		request.setAttribute("wklist0", request.getParameter("list"));
+		request.setAttribute("wklist1", request.getParameter("wklist1"));
+		request.setAttribute("wklist2", request.getParameter("wklist2"));
+		request.setAttribute("wklist3", request.getParameter("wklist3"));
+		request.setAttribute("wklist4", request.getParameter("wklist4"));
+		request.setAttribute("wklist5", request.getParameter("wklist5"));
+		
+		String id = request.getParameter("id");
+		String num = request.getParameter("num");
+		request.setAttribute("id", id);
+		request.setAttribute("num", num);
+		return "list";
+	}
 
+	public String getForEdit (HttpServletRequest request) {
+		System.out.println("Cont getForEdit");
+		int user_num = Integer.parseInt(request.getParameter("user_num"));
+		int work_num = Integer.parseInt(request.getParameter("wk_no"));
+		int ex_num = Integer.parseInt(request.getParameter("ex_num"));
+		String id = request.getParameter("user_id");
+		String pwd = request.getParameter("user_pwd");
+		request.setAttribute("user_id", id);
+		request.setAttribute("user_pwd", pwd);
+		
+		try {
+			workout w = dao.getForEdit(user_num, work_num, ex_num);
+			request.setAttribute("workout", w);
+			request.setAttribute("user_num", user_num);
+			request.setAttribute("work_num", work_num);
+			request.setAttribute("ex_num", ex_num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "wk_edit.jsp";
+	}
 	
+	public String update (HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("Cont update");
+		workout w = new workout();
+		int user_num = Integer.parseInt(request.getParameter("user_num"));
+		int work_num = Integer.parseInt(request.getParameter("wk_number"));
+		int ex_num = Integer.parseInt(request.getParameter("ex_number"));
+		request.setAttribute("user_num", user_num);
+		request.setAttribute("work_num", work_num);
+		request.setAttribute("ex_num", ex_num);
+		String id = request.getParameter("user_id");
+		String pwd = request.getParameter("user_pwd");
+		request.setAttribute("user_id", id);
+		request.setAttribute("user_pwd", pwd);
+		int result = 0;
+		try {
+			BeanUtils.populate(w, request.getParameterMap());
+			result = dao.updateEx(w);
+			System.out.println("CONT-DAO 업데이트 결과 : "+result);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "tolist?user_num="+user_num+"&wk_no="+work_num+"";
+	}
 	
-	public String insertWorkout (HttpServletRequest request) {
+	public String delete (HttpServletRequest request) {
+		System.out.println("Cont delete");
+		int work_num = Integer.parseInt(request.getParameter("work_num"));
+		String user_id = request.getParameter("user_id");
+		String user_pwd = request.getParameter("user_pwd");
+		System.out.println("user_id"+user_id);
+		System.out.println("user_pwd"+user_pwd);
+		try {
+		dao.delete(work_num);
+		} catch (Exception e) {
+		e.printStackTrace();
+		}
+		
+		return "signin?user_id="+user_id+"&user_pwd="+user_pwd;
+	}
+	
+	public String start(HttpServletRequest request) {
+		System.out.println("Cont start");
+		String id = request.getParameter("id");
+		String pwd = request.getParameter("pwd");
+		request.setAttribute("id", id);
+		request.setAttribute("pwd", pwd);
+		
+		return "wk_insert.jsp";
+	}
+	
+	public String insertWorkout (HttpServletRequest request) { // 운동 기입
+		System.out.println("Cont insertWorkout");
+		String id = request.getParameter("user_id");
+		String pwd = request.getParameter("user_pwd");
+		request.setAttribute("user_id", id);
+		request.setAttribute("user_pwd", pwd);
+		
 		try {
 			String[] s_temp1 = request.getParameterValues("ex_name");
 			String[] s_temp2 = request.getParameterValues("ex_weight");
@@ -253,7 +358,7 @@ public class wk_Controller extends HttpServlet {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return "main";
+		return "signin?user_id="+id+"&user_pwd="+pwd+"";
 	}
 	
 //	public String getWorkoutnum(HttpServletRequest request) {
