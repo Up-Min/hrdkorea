@@ -35,6 +35,7 @@
         </div>
       </div>
    		</form>
+   		
    	   	<form name="signup_form" action="signup">
    	      <div class="sign-up-htm">
         <div class="group">
@@ -50,7 +51,7 @@
           <input id="pass" type="text" class="input" name = "user_email">
         </div>
         <div class="group">
-          <input type="submit" class="button" value="회원가입">
+          <input type="submit" class="button" onclick="signup(); return false;" value="회원가입">
         </div>
       </div>
    		</form>

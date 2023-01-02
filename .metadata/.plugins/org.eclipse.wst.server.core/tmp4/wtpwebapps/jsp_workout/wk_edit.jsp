@@ -2,12 +2,77 @@
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+<html style="background-color: #667643;">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="./css/style.css" />
 </head>
+<style>
+	
+body{
+width: 800px;
+height : 500px;
+margin: 0 auto;
+margin-top: 50px;
+background-color: transparent;
+}
+
+.workout{
+	width: 700px;
+	height : 400px;
+	text-align: center;
+	color: black;
+	border: 3px solid black;
+	margin: 0 auto;
+	margin-top: 50px;
+	font-size: 18px;
+	background-color: #D9D9D9;
+}
+
+.title{
+	font-size: 25px;
+	line-height: 30px;
+	padding: 5px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+table{
+	margin-top:10px;
+	text-align: center;
+	margin: 0 auto;
+}
+
+tr{
+margin-top: 5px;
+	padding: 5px;
+}
+
+
+td{
+	padding: 5px;
+}
+
+.good{
+	font-size: 20px;
+	line-height: 25px;
+}
+
+p{
+	margin-top: 10px;
+}
+
+.button{
+	margin: 0 auto;
+	text-align: center;
+}
+
+button:hover{
+ cursor: pointer;
+}
+</style>
+
 <body>
 	<%
 	String num = request.getParameter("user_num");
@@ -22,16 +87,16 @@
 		<input type="hidden" name="user_id" value="${user_id}">
 		<input type="hidden" name="user_pwd" value="${user_pwd}">
 			<div class="day">
+			<p class="title"> 운동 수정 페이지 </p>
 				<table>
 					<tr>
-						<th>고객 DB 번호 : <%=num%> 
-						<input type="hidden" name="user_number" value="<%= num %>">
-						</th>
-						<th>운동 수정</th>
+						<th> </th>
+						<th>운동 부위 </th> 
+						<th><input type="text" name="wk_part" maxlength="20" value="${workout.wk_part}" readonly> </th>
+						<th></th>
 					</tr>
 					<tr>
-						<th>운동 부위 <input type="text" name="wk_part" maxlength="20" value="${workout.wk_part}" readonly>
-						</th>
+						<th> <br> </th>
 					</tr>
 					<tr>
 						<th>운동명</th>
@@ -46,24 +111,31 @@
 						<td><input type="text" name="ex_sets" maxlength="20" value="${workout.ex_sets}"></td>
 					</tr>
 					<tr>
-						<td colspan="1">
-							<button type = "submit">수정 완료</button>
-							<button onclick="chk_cancel(); return false;">수정 취소</button>
+						<td></td>
+						<td>
+							<button onclick="update(); return false;"><img alt="check" src="./img/check.png" width="45px"></button>
+							<p> 수정 완료 </p>
+							</td>
+							<td>
+							<button onclick="chk_cancel(${user_id}, ${user_pwd}); return false;"> <img alt="나가기" src="./img/cancel.png" width="45px"> </button>
+							<p>수정 취소</p>
 						</td>
+						<td></td>
 					</tr>
 
 				</table>
 			</div>
 		</form>
-		<p>
-			가장 지치고 고통스러운 시기가 <br> 가장 성장하기 좋은 시기이다. <br>
-			<b> 이상민 </b>
+		<br>
+		<p class="good">
+			가장 지치고 고통스러운 시기가 <br> 가장 성장하기 좋은 시기이다 <br>
+			<b> -이상민- </b>
 		</p>
 		
 	</div>
-	
-			<button onclick="location.href = 'signin?user_id=${user_id}&user_pwd=${user_pwd}'"> 홈으로 </button>
-
+	<div class="button">
+			<button onclick="location.href = 'signin?user_id=${user_id}&user_pwd=${user_pwd}'"> <img alt="홈으로" src="./img/home.png" width="50px"> </button>	
+	</div>
 	<script type="text/javascript" src="./script.js"></script>
 </body>
 

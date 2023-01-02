@@ -261,8 +261,10 @@ public class wk_Controller extends HttpServlet {
 		System.out.println("Cont start");
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");
+		
 		request.setAttribute("id", id);
 		request.setAttribute("pwd", pwd);
+		
 		
 		return "wk_insert.jsp";
 	}
@@ -271,10 +273,14 @@ public class wk_Controller extends HttpServlet {
 		System.out.println("Cont insertWorkout");
 		String id = request.getParameter("user_id");
 		String pwd = request.getParameter("user_pwd");
-		request.setAttribute("user_id", id);
-		request.setAttribute("user_pwd", pwd);
+		String num = request.getParameter("user_num");
 		
 		try {
+			System.out.println("insert num : " + num);
+			
+			request.setAttribute("user_id", id);
+			request.setAttribute("user_pwd", pwd);
+			request.setAttribute("user_num", num);
 			String[] s_temp1 = request.getParameterValues("ex_name");
 			String[] s_temp2 = request.getParameterValues("ex_weight");
 			String[] s_temp3 = request.getParameterValues("ex_reps");
@@ -328,6 +334,7 @@ public class wk_Controller extends HttpServlet {
 			for(int i=0; i<Ns_temp1.length; i++) {
 				dao.insertExercise(request, Ns_temp1[i], Ns_temp2[i], Ns_temp3[i], Ns_temp4[i] );
 			}
+			
 
 			
 //			for(int i=0; i<s_temp1.length; i++) {

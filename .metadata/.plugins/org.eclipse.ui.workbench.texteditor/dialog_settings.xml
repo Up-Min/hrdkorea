@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value=".wk"/>
+		<item key="selection" value="ul"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="ul"/>
+			<item value="padding-in"/>
+			<item value="block"/>
+			<item value="div"/>
+			<item value="list-sty"/>
+			<item value="list"/>
 			<item value=".wk\"/>
 			<item value=".wk"/>
 			<item value="Index"/>

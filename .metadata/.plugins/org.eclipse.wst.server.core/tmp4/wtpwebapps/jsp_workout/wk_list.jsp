@@ -6,20 +6,84 @@
 
 
 <!DOCTYPE html>
-<html>
+<html style = "background-color: #385E5D;">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="./css/style.css" />
 </head>
-<body>
-	<form action="delete" method="post">		
+<style>
+.body{
+	width: 700px;
+	height: 500px;
+	margin: 0 auto;
+	background-color: #D9D9D9;
+	color: black;
+	text-align: center;
+	border : 5px solid black;
+}
+
+.name{
+	font-size: 25px;
+	line-height: 30px;
+}
+
+table {
+	border: 1px solid black;
+	text-align: center;
+	margin: 0 auto;
+	padding : 3px;
+}
+table th{
+	padding : 5px;
+}
+
+table td{
+	padding : 10px;
+}
+
+.change:hover{
+	cursor: pointer;
+}
+
+.good{
+	font-size: 20px;
+	line-height: 25px;
+}
+
+.delete{
+	position: absolute;
+	right : 0;
+	top: 500px;
+	right : 325px;
+}
+
+.home{
+	position: absolute;
+	right : 0;
+	top : 500px;
+	right : 425px;
+}
+
+button:hover{
+ cursor: pointer;
+}
+
+
+</style>
+
+
+<body style = "background-color: #385E5D; width : 800px; margin: 0 auto; margin-top : 50px; position: relative;" >
+<div class="body">
+	<form name = "list" action="delete" method="post">		
 		<input type="hidden" name="work_num" value="${work_num}">
 		<input type="hidden" name="user_id" value="${user_id}">
 		<input type="hidden" name="user_pwd" value="${user_pwd}">
-		<p>운동 리스트 페이지</p>
+		<br>
+		<p class = "name">운동 리스트 페이지</p>
+		<br>
 		<p>${user_id}님의 운동기록</p>
-
+		<br>
 		<table>
 			<tr>
 				<th>날짜</th>
@@ -35,28 +99,33 @@
 					<td>${w.wk_date}</td>
 					<td>${w.wk_part}</td>
 					<td>${w.ex_name}</td>
-					<td>${w.ex_weight}</td>
-					<td>${w.ex_reps}</td>
-					<td>${w.ex_sets}</td>
-					<td
+					<td>${w.ex_weight}kg</td>
+					<td>${w.ex_reps}회</td>
+					<td>${w.ex_sets}세트</td>
+					<td style="color : #385C92" class="change"
 						onclick="location.href = 'edit?user_id=${user_id}&user_pwd=${user_pwd}&user_num=${user_num}&wk_no=${w.wk_number}&ex_num=${w.ex_number}'">
-						기록 수정</td>
+					운동수정</td>
 				</tr>
 
 			</c:forEach>
 		</table>
-
-		<p>
-			행복은 성취의 기쁨과 창조적 노력이 주는 <br> 쾌감 속에 있다. <br> <b> 프랭클린
-				루즈벨트 </b>
+		<br>
+			
+		<p class = "good">
+			행복은 성취의 기쁨과 창조적 노력이 주는 <br> 쾌감 속에 있다 <br><br> 
+			<b> -프랭클린 루즈벨트- </b>
 		</p>
 
 		
-		<button type="submit">운동 기록 전체 삭제</button>
+		<button class = "delete" onclick="chk_delete(); return false;"> <img alt="삭제" src="./img/trash-can.png" width="45px"></button>
 	</form>
-		<button onclick="location.href = 'signin?user_id=${user_id}&user_pwd=${user_pwd}'"> 홈으로</button>
+		<button class = "home" onclick="location.href = 'signin?user_id=${user_id}&user_pwd=${user_pwd}'"> <img alt="home" src="./img/home.png" width="45px"> </button>
+</div>
+
 	<script type="text/javascript" src="./script.js"></script>
 </body>
+
+
 <%-- 	<table>
 		<c:forEach items="${wklist0}" var="w" varStatus="status">
 			<input type=hidden value="${w.wk_number}">

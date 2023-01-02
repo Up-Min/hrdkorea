@@ -148,14 +148,14 @@ public class wk_DAO {
 	
 	
 	public void insertWorkout(HttpServletRequest request) throws SQLException {
-		System.out.println(" DAO insertWorkout");
+		System.out.println("DAO insertWorkout");
 		Connection conn = open();
-		int user_num = Integer.parseInt(request.getParameter("user_number"));
+		int user_num = Integer.parseInt(request.getParameter("user_num"));
 		String wk_part = request.getParameter("wk_part");
 		System.out.println("user_num : " + user_num);
 		System.out.println("part : " + wk_part);
 		
-		String sql = "insert into workout values(wk_seq.nextval, sysdate, ?, "+user_num+")";
+		String sql = "insert into workout values(wk_seq.nextval, to_char(sysdate + 9/24, 'YYYY-MM-DD HH24:MI:SS'), ?, "+user_num+")";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		
 		try {
