@@ -1,3 +1,4 @@
-GitRepositoriesView.GitDirectories=/Users/l/Develop/.git\:
-GitRepositoriesView.GitDirectories.relative=/Users/l/Develop/.git\:
+GitRepositoriesView.GitDirectories=/Users/l/Develop/.git\:/Users/l/hrdkorea/.git\:
+GitRepositoriesView.GitDirectories.relative=/Users/l/Develop/.git\:.git\:
+core_autoIgnoreDerivedResources=false
 eclipse.preferences.version=1

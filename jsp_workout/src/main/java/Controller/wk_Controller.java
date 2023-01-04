@@ -140,8 +140,6 @@ public class wk_Controller extends HttpServlet {
 			for(int i : Wklist) {
 				hashwk.add(i);
 			}
-			request.setAttribute("hashwk", hashwk);	
-			System.out.println(hashwk);
 			
 			ArrayList<Integer> wknum = new ArrayList<Integer>(hashwk);
 			
@@ -246,8 +244,6 @@ public class wk_Controller extends HttpServlet {
 		int work_num = Integer.parseInt(request.getParameter("work_num"));
 		String user_id = request.getParameter("user_id");
 		String user_pwd = request.getParameter("user_pwd");
-		System.out.println("user_id"+user_id);
-		System.out.println("user_pwd"+user_pwd);
 		try {
 		dao.delete(work_num);
 		} catch (Exception e) {
@@ -285,10 +281,6 @@ public class wk_Controller extends HttpServlet {
 			String[] s_temp2 = request.getParameterValues("ex_weight");
 			String[] s_temp3 = request.getParameterValues("ex_reps");
 			String[] s_temp4 = request.getParameterValues("ex_sets");
-			System.out.println(Arrays.toString(s_temp1));
-			System.out.println(Arrays.toString(s_temp2));
-			System.out.println(Arrays.toString(s_temp3));
-			System.out.println(Arrays.toString(s_temp4));
 			String[] Ns_temp1 = new String[0];
 			String[] Ns_temp2 = new String[0];
 			String[] Ns_temp3 = new String[0];
@@ -322,11 +314,6 @@ public class wk_Controller extends HttpServlet {
 				}
 				Ns_temp4 = list.toArray(new String[0]);
 			}
-			
-			System.out.println(Arrays.toString(Ns_temp1));
-			System.out.println(Arrays.toString(Ns_temp2));
-			System.out.println(Arrays.toString(Ns_temp3));
-			System.out.println(Arrays.toString(Ns_temp4));
 
 			dao.insertWorkout(request);
 			int workoutnum = dao.getWorkoutnum(request);
