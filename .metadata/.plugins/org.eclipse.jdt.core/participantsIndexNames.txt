@@ -19,6 +19,8 @@ INDEX VERSION 1.131
 /HRD_5678/src/main/java
 /Users/l/hrdkorea/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/4280774197.index
 /cbq_5678/src/main/java
+/Users/l/hrdkorea/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/1206456382.index
+/jsp_jaego/src/main/java
 /Users/l/hrdkorea/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/3323082713.index
 /cbq_1234/src/main/java
 /Users/l/hrdkorea/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/915271630.index

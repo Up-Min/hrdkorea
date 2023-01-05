@@ -152,7 +152,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="/Users/l/hrdkorea/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/ROOT" path="" reloadable="false"/><Context docBase="/Users/l/hrdkorea/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/cbq_5678" path="/cbq_5678" reloadable="true" source="org.eclipse.jst.jee.server:cbq_5678"/></Host>
+      <Context docBase="/Users/l/hrdkorea/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/ROOT" path="" reloadable="false"/><Context docBase="/Users/l/hrdkorea/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/cbq_5678" path="/cbq_5678" reloadable="true" source="org.eclipse.jst.jee.server:cbq_5678"/><Context docBase="/Users/l/hrdkorea/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/jsp_jaego" path="/jsp_jaego" reloadable="true" source="org.eclipse.jst.jee.server:jsp_jaego"/></Host>
     </Engine>
   </Service>
 </Server>

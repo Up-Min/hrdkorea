@@ -4,5 +4,6 @@
   <module moduleId="org.eclipse.jst.jee.server:board_12.26" serverId="Tomcat v9.0 Server For Board_12.26"/>
   <module moduleId="org.eclipse.jst.jee.server:board_12.26_new" serverId="Tomcat v9.0 Server For Board_12.26"/>
   <module moduleId="org.eclipse.jst.jee.server:jsp_workout" serverId="Tomcat v9.0 Server for Workout"/>
+  <module moduleId="org.eclipse.jst.jee.server:jsp_jaego" serverId="Tomcat v9.0 Server at localhost"/>
   <module moduleId="org.eclipse.jst.jee.server:JSP_Board" serverId="Tomcat v9.0 Server for Board"/>
 </modules>

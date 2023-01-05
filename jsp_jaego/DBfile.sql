@@ -1,0 +1,11 @@
+CREATE TABLE PRODUCT 
+(
+  P_CODE VARCHAR2(20 BYTE) NOT NULL 
+, P_NAME VARCHAR2(50 BYTE) NOT NULL 
+, REMAIN NUMBER NOT NULL 
+, EDIT_DATE VARCHAR2(50 BYTE) NOT NULL); 
+
+insert into product VALUES ('A001', '맨투맨 티', 500, to_char(sysdate+9/24, 'YYYY-MM-DD'));
+
+select * from product;
+
