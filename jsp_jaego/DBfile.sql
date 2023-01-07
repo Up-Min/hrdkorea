@@ -9,3 +9,8 @@ insert into product VALUES ('A001', '맨투맨 티', 500, to_char(sysdate+9/24, 'YYY
 
 select * from product;
 
+update product set remain = 20, edit_date = to_char(sysdate+9/24, 'YYYY-MM-DD') where p_code = 'A001'; 
+
+commit;
+
+delete from product where p_code = '8f9fd5c4-7793-4901-a1dc-e698f4995c76';

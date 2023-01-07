@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -57,6 +58,62 @@ public class Jaego_DAO {
 		return l;
 	}
 	
+	public int add(HttpServletRequest request, String p_code, String p_name, int remain) {
+		System.out.println("DAO add");
+		int result = 0;
+		String sql = "insert into product values (?,?,?,to_char(sysdate+9/24, 'YYYY-MM-DD'))";
+		
+		Connection conn = open();
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, p_code);
+			pstmt.setString(2, p_name);
+			pstmt.setInt(3, remain);
+			result = pstmt.executeUpdate();
+			conn.close();
+			pstmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+		return result;
+	}
 	
+	public int edit (HttpServletRequest request, String p_code, String p_name, int remain) {
+		System.out.println("DAO edit");
+		int result = 0;
+		String sql = "update product set remain = ?, edit_date = to_char(sysdate+9/24, 'YYYY-MM-DD') where p_code = ?";
+		
+		Connection conn = open();
+		PreparedStatement pstmt;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, remain);
+			pstmt.setString(2, p_code);
+			result = pstmt.executeUpdate();
+			conn.close();
+			pstmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 	
+	public int delete (HttpServletRequest request, String p_code) {
+		int result = 0;
+		
+		String sql = "delete from product where p_code = ?";
+		
+		Connection conn = open();
+		PreparedStatement pstmt;
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, p_code);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+		return result;
+	}
 }
