@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="./script.js"></script>
 </head>
+<script type="text/javascript" src="./script.js"></script>
 <style>
 .warn_button{
 background-color: red;

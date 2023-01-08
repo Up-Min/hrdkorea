@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="./script.js"></script>
 </head>
+<script type="text/javascript" src="./script.js"></script>
 <body>
 	<h1> 신규품목 추가 페이지 </h1>
 	
@@ -22,9 +22,9 @@
 				<td><input type = "text" name = "remain" placeholder="상품 수량을 입력하세요.">  </td>			
 			</tr>
 		</table>
-			<button class="button_insert" onclick = "chk_in(); return false;"> 상품 추가 </button>
 		
 		</form>
+			<button type="button" class="button_insert" onclick = "chk_in(); return false;"> 상품 추가 </button>
 
 	
 </body>

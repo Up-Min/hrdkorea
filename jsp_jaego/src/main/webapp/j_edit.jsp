@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="./script.js"></script>
 </head>
+<script type="text/javascript" src="./script.js"></script>
 <body>
 	<h1> 품목 수정 페이지 </h1>
 	
@@ -22,9 +22,8 @@
 				<td><input type = "text" name = "remain" value="${remain}">  </td>			
 			</tr>
 		</table>
-			<button class="button_insert" onclick = "chk_ed(); return false;"> 상품 수정 </button>
-		
 		</form>
+			<button type="button" class="button_insert" onclick = "chk_ed(); return false;"> 상품 수정 </button>
 
 
 </body>

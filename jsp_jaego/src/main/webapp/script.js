@@ -3,13 +3,13 @@
  */
 
  function chk_in(){
-	 var a = document.formAdd;
+	 let a = document.formAdd;
 	 
-	 if(a.p_name == ''){
+	 if(a.p_name.value == ''){
 		alert("상품 이름이 입력되지 않았습니다.");
 		return false;
 	 }
-	 if(a.remain == ''){
+	 if(a.remain.value == ''){
 		 alert("상품 수량이 입력되지 않았습니다.");
 		 return false;
 	 }
@@ -21,11 +21,11 @@
   function chk_ed(){
 	 var e = document.formEdit;
 	 
-	 if(a.p_name == ''){
+	 if(e.p_name.value == ''){
 		alert("상품 이름이 입력되지 않았습니다.");
 		return false;
 	 }
-	 if(a.remain == ''){
+	 if(e.remain.value == ''){
 		 alert("상품 수량이 입력되지 않았습니다.");
 		 return false;
 	 }
