@@ -22,8 +22,8 @@
 				<td><input type = "text" name = "remain" value="${remain}">  </td>			
 			</tr>
 		</table>
-		</form>
 			<button type="button" class="button_insert" onclick = "chk_ed(); return false;"> 상품 수정 </button>
+		</form>
 
 
 </body>

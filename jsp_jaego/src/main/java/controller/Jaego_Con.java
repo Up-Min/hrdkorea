@@ -119,6 +119,7 @@ public class Jaego_Con extends HttpServlet {
 		request.setAttribute("p_name", p_name);
 		request.setAttribute("remain", remain);
 		
+		
 		result = dao.edit(request, p_code, p_name, remain);
 		System.out.println("DAO edit update 결과 : " + result);
 		

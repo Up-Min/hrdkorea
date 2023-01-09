@@ -81,14 +81,15 @@ public class Jaego_DAO {
 	public int edit (HttpServletRequest request, String p_code, String p_name, int remain) {
 		System.out.println("DAO edit");
 		int result = 0;
-		String sql = "update product set remain = ?, edit_date = to_char(sysdate+9/24, 'YYYY-MM-DD') where p_code = ?";
+		String sql = "update product set p_name = ?, remain = ?, edit_date = to_char(sysdate+9/24, 'YYYY-MM-DD') where p_code = ?";
 		
 		Connection conn = open();
 		PreparedStatement pstmt;
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, remain);
-			pstmt.setString(2, p_code);
+			pstmt.setString(1, p_name);
+			pstmt.setInt(2, remain);
+			pstmt.setString(3, p_code);
 			result = pstmt.executeUpdate();
 			conn.close();
 			pstmt.close();

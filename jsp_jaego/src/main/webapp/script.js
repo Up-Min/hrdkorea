@@ -4,12 +4,14 @@
 
  function chk_in(){
 	 let a = document.formAdd;
+	 let p = a.p_name.value;
+	 let r = a.remain.value;
 	 
-	 if(a.p_name.value == ''){
+	 if(p == ''){
 		alert("상품 이름이 입력되지 않았습니다.");
 		return false;
 	 }
-	 if(a.remain.value == ''){
+	 if(r == ''){
 		 alert("상품 수량이 입력되지 않았습니다.");
 		 return false;
 	 }
@@ -19,13 +21,15 @@
  }
  
   function chk_ed(){
-	 var e = document.formEdit;
+	 let e = document.formEdit;
+	 let p = e.p_name.value;
+	 let r = e.remain.value;
 	 
-	 if(e.p_name.value == ''){
+	 if(p == ''){
 		alert("상품 이름이 입력되지 않았습니다.");
 		return false;
 	 }
-	 if(e.remain.value == ''){
+	 if(r == ''){
 		 alert("상품 수량이 입력되지 않았습니다.");
 		 return false;
 	 }
