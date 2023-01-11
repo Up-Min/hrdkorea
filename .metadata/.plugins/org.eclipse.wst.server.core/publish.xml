@@ -5,4 +5,5 @@
   <server id="Tomcat v9.0 Server at HRD_1234_easy2" path="publish1.dat"/>
   <server id="Tomcat v9.0 Server for cbq_mine" path="publish2.dat"/>
   <server id="Tomcat v9.0 Server for Workout" path="publish4.dat"/>
+  <server id="Tomcat v9.0 Server for jaego" path="publish5.dat"/>
 </publish-info>

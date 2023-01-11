@@ -1,16 +1,19 @@
 
 function signup() {
 	var f = document.signup_form;
+	var i = f.user_id.value;
+	var p = f.user_pwd.value;
+	var e = f.user_email.value;
 
-	if (f.user_id == '') {
+	if (i == '') {
 		alert("아이디를 입력해 주십시오.");
 		return false;
 	}
-	if (f.user_pwd == '') {
+	if (p == '') {
 		alert("비밀번호를 입력해 주십시오.");
 		return false;
 	}
-	if (f.user_email == '') {
+	if (e == '') {
 		alert("이메일 주소를 입력해 주십시오.");
 		return false;
 	}
@@ -42,13 +45,36 @@ function chk_cancel(user_id, user_pwd) {
 }
 
 function update() {
+	var f = document.editForm;
+	var n = f.ex_name.value;
+	var w = f.ex_weight.value;
+	var r = f.ex_reps.value;
+	var s = f.ex_sets.value;
+	
+		if (n == '') {
+		alert("수정할 운동 이름을 입력해 주십시오.");
+		return false;
+	}
+			if (w == '') {
+		alert("수정할 운동 무게를 입력해 주십시오.");
+		return false;
+	}
+			if (r == '') {
+		alert("수정할 운동 횟수를 입력해 주십시오.");
+		return false;
+	}
+			if (s == '') {
+		alert("수정할 운동 세트를 입력해 주십시오.");
+		return false;
+	}
+	
  	alert("수정이 완료 되었습니다.");
  	submit();
 }
 
 
 function logout(){
-	alert("! 로그아웃이 완료 되었습니다 !");
+	alert("로그아웃이 완료 되었습니다 !");
 	location.href="/jsp_workout/index";
 }
 

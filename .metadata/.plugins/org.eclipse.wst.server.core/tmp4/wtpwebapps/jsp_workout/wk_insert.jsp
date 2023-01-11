@@ -62,12 +62,12 @@ margin-top: 50px;
  text-align: center;
 }
 
-hr{
- border : 0px;
+table:hover{
+	cursor: auto;
 }
 
-li:hover {
-	cursor: pointer;
+hr{
+ border : 0px;
 }
 
 td{

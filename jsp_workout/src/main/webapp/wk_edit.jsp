@@ -80,7 +80,7 @@ button:hover{
 	%>
 
 	<div class="workout">
-		<form action="update" method="post">
+		<form name="editForm" action="update" method="post">
 		<input type="hidden" name="user_num" value="${user_num}"> 
 		<input type="hidden" name="wk_number" value="${workout.wk_number}">
 		<input type="hidden" name="ex_number" value="${workout.ex_number}">

@@ -83,7 +83,7 @@ margin: 0 auto;
 margin-left: 5px;
 }
 
-li:hover {
+.work:hover {
 	cursor: pointer;
 }
 
@@ -146,7 +146,7 @@ button:hover {
 											<input type=hidden name="${w.wk_number}"
 												value="${w.wk_number}">
 											<!-- jstl쓰면 굳이 request쓸 필요 없다. (Board board : boardList) -->
-											<tr
+											<tr class = "work"
 												onclick="location.href = 'tolist?user_id=${id}&user_pwd=${pwd}&user_num=${num}&wk_no=${w.wk_number}'">
 												<td>${w.wk_date}</td>
 												<td>${w.ex_name}</td>
@@ -168,7 +168,7 @@ button:hover {
 											<input type=hidden name="${w.wk_number}"
 												value="${w.wk_number}">
 											<!-- jstl쓰면 굳이 request쓸 필요 없다. (Board board : boardList) -->
-											<tr
+											<tr class = "work"
 												onclick="location.href = 'tolist?user_id=${id}&user_pwd=${pwd}&user_num=${num}&wk_no=${w.wk_number}'">
 												<td>${w.wk_date}</td>
 												<td>${w.ex_name}</td>
@@ -190,7 +190,7 @@ button:hover {
 											<input type=hidden name="${w.wk_number}"
 												value="${w.wk_number}">
 											<!-- jstl쓰면 굳이 request쓸 필요 없다. (Board board : boardList) -->
-											<tr
+											<tr class = "work"
 												onclick="location.href = 'tolist?user_id=${id}&user_pwd=${pwd}&user_num=${num}&wk_no=${w.wk_number}'">
 												<td>${w.wk_date}</td>
 												<td>${w.ex_name}</td>
@@ -212,7 +212,7 @@ button:hover {
 											<input type=hidden name="${w.wk_number}"
 												value="${w.wk_number}">
 											<!-- jstl쓰면 굳이 request쓸 필요 없다. (Board board : boardList) -->
-											<tr
+											<tr class = "work"
 												onclick="location.href = 'tolist?user_id=${id}&user_pwd=${pwd}&user_num=${num}&wk_no=${w.wk_number}'">
 												<td>${w.wk_date}</td>
 												<td>${w.ex_name}</td>
@@ -234,7 +234,7 @@ button:hover {
 											<input type=hidden name="${w.wk_number}"
 												value="${w.wk_number}">
 											<!-- jstl쓰면 굳이 request쓸 필요 없다. (Board board : boardList) -->
-											<tr
+											<tr class = "work"
 												onclick="location.href = 'tolist?user_id=${id}&user_pwd=${pwd}&user_num=${num}&wk_no=${w.wk_number}'">
 												<td>${w.wk_date}</td>
 												<td>${w.ex_name}</td>
