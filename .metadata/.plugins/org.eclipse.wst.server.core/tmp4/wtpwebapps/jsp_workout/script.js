@@ -31,8 +31,12 @@ function pwdchk(){
 	var p = f.user_pwd.value;
 	var p1 = f.user_pwd1.value;	
 	
+	
+	
 	if(p != p1){
 		alert("비밀번호가 일치하지 않습니다. 다시 확인해주세요.")
+	}else if(p = p1){
+		alert("비밀번호가 일치합니다!")
 	}
 }
 

@@ -1,12 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title> 로그인 페이지 </title>
 <link rel="stylesheet" href="./css/style.css"/>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 <script type="text/javascript" src = "script.js"></script>
+<script>
+	function chkpwd2() {
+		var p = document.getElementById("pass").value;
+		var p1 = document.getElementById("pass1").value;
+		var r1 = document.getElementsByClassName("label_pwd1");
+		var r2 = document.getElementsByClassName("label_pwd2");
+
+		
+		if(p != p1){
+ 			$("label_pwd1").show;
+ 			$("label_pwd2").hide;
+		}else if(p = p1){
+ 			$("label_pwd1").hide;
+ 			$("label_pwd2").show;
+		}
+	}
+</script>
 </head>
 <body>
 <div class="video-background">
@@ -49,7 +68,11 @@
         </div>
          <div class="group">
           <label for="pass" class="label">비밀번호확인</label>
-          <input id="pass1" type="password" class="input" data-type="password" name = "user_pwd1" placeholder="비밀번호를 한번 더 입력해주세요" onchange="pwdchk()">
+          <input id="pass1" type="password" class="input" data-type="password" name = "user_pwd1" placeholder="비밀번호를 한번 더 입력해주세요" onchange="chkpwd2()">
+        </div>
+        <div class="group">
+       		<label for="pass" class="label_pwd1" style="display: none;"> 비밀번호가 일치합니다. </label>
+       		<label for="pass" class="label_pwd2" style="display: none;"> 비밀번호가 일치하지 않습니다. </label>
         </div>
         <div class="group">
           <label for="pass" class="label">이메일 주소</label>
