@@ -5,7 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title> 로그인 페이지 </title>
-<link rel="stylesheet" href="./css/style.css" />
+<link rel="stylesheet" href="./css/style.css"/>
+<script type="text/javascript" src = "script.js"></script>
 </head>
 <body>
 <div class="video-background">
@@ -40,15 +41,19 @@
    	      <div class="sign-up-htm">
         <div class="group">
           <label for="user" class="label">아이디</label>
-          <input id="user" type="text" class="input" name = "user_id">
+          <input id="user" type="text" class="input" name = "user_id" placeholder="15자 이내로 입력해주세요">
         </div>
         <div class="group">
           <label for="pass" class="label">비밀번호</label>
-          <input id="pass" type="password" class="input" data-type="password" name = "user_pwd">
+          <input id="pass" type="password" class="input" data-type="password" name = "user_pwd" placeholder="사용할 비밀번호를 입력해주세요">
+        </div>
+         <div class="group">
+          <label for="pass" class="label">비밀번호확인</label>
+          <input id="pass1" type="password" class="input" data-type="password" name = "user_pwd1" placeholder="비밀번호를 한번 더 입력해주세요" onchange="pwdchk()">
         </div>
         <div class="group">
           <label for="pass" class="label">이메일 주소</label>
-          <input id="pass" type="text" class="input" name = "user_email">
+          <input id="email" type="text" class="input" name = "user_email" placeholder="abc@workout.com 형태로 입력해주세요">
         </div>
         <div class="group">
           <input type="submit" class="button" onclick="signup(); return false;" value="회원가입">
@@ -60,6 +65,6 @@
 </div>
 	
 </div>
-	<script type="text/javascript" src = "./script.js"></script>
+
 </body>
 </html>
