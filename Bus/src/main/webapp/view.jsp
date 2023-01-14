@@ -42,7 +42,7 @@
 			</div>
 		</section>
 	<%@include file="footer.jsp"%>
-	<script>
+<!-- 	<script>
 		$(document).ready(function(){
 			Object.values(${bus});
 			var money = $('#money').val();
@@ -64,5 +64,5 @@
 	document.writeln(cn2);
 	*/
 	</script>
-</body>
+ --></body>
 </html>

@@ -171,7 +171,8 @@ line-height: 30px;
 						</td>
 						<td>
 						<br>
-						<button onclick="location.href = 'signin?user_id=${id}&user_pwd=${pwd}'; return false;"><img alt="나가기" src="./img/exit1.png" width="45px"></button>
+<%-- 						<button onclick="location.href = 'signin?user_id=${id}&user_pwd=${pwd}'; return false;"><img alt="나가기" src="./img/exit1.png" width="45px"></button> --%>
+						<button onclick="chk_cancel(${id},${pwd}); return false;"><img alt="나가기" src="./img/exit1.png" width="45px"></button>
 						<br>
 						<p> 운동취소 </p>
 						</td>

@@ -100,6 +100,7 @@ public class wk_Controller extends HttpServlet {
 		System.out.println("Cont signIn");
 		try {
 			String id = request.getParameter("user_id");
+			String pwd = request.getParameter("user_pwd");
 			String num = request.getParameter("user_number");
 			logininfo l = dao.signIn(request);
 			
