@@ -66,7 +66,7 @@ justify-content: center;
 li{
 margin-left : 7px;
 margin-right : 7px;
-width: 31%; 
+width: 47%; 
 margin-bottom: 10px;
 color: black;
 background-color: wheat;
@@ -93,6 +93,10 @@ button:hover {
 
 .bla {
 	font-size: 12px;
+}
+
+.wktable{
+width: 90%
 }
 </style>
 <body style="background-color: rgba(40, 57, 101, .9);">
@@ -141,7 +145,7 @@ button:hover {
 										type="hidden" name="num" value="${num}"> <input
 										type="hidden" name="pwd" value="${pwd}"> <input
 										type="hidden" name="list" value="${wklist0}">
-									<table>
+									<table class = "wktable">
 										<c:forEach items="${wklist0}" var="w" varStatus="status">
 											<input type=hidden name="${w.wk_number}"
 												value="${w.wk_number}">
@@ -163,7 +167,7 @@ button:hover {
 										type="hidden" name="num" value="${num}"> <input
 										type="hidden" name="pwd" value="${pwd}"> <input
 										type="hidden" name="list" value="${wklist1}">
-									<table>
+									<table class = "wktable">
 										<c:forEach items="${wklist1}" var="w" varStatus="status">
 											<input type=hidden name="${w.wk_number}"
 												value="${w.wk_number}">
@@ -185,7 +189,7 @@ button:hover {
 										type="hidden" name="num" value="${num}"> <input
 										type="hidden" name="pwd" value="${pwd}"> <input
 										type="hidden" name="list" value="${wklist2}">
-									<table>
+									<table class = "wktable">
 										<c:forEach items="${wklist2}" var="w" varStatus="status">
 											<input type=hidden name="${w.wk_number}"
 												value="${w.wk_number}">
@@ -207,7 +211,7 @@ button:hover {
 										type="hidden" name="num" value="${num}"> <input
 										type="hidden" name="pwd" value="${pwd}"> <input
 										type="hidden" name="list" value="${wklist3}">
-									<table>
+									<table class = "wktable">
 										<c:forEach items="${wklist3}" var="w" varStatus="status">
 											<input type=hidden name="${w.wk_number}"
 												value="${w.wk_number}">
@@ -229,7 +233,7 @@ button:hover {
 										type="hidden" name="num" value="${num}"> <input
 										type="hidden" name="pwd" value="${pwd}"> <input
 										type="hidden" name="list" value="${wklist4}">
-									<table>
+									<table class = "wktable">
 										<c:forEach items="${wklist4}" var="w" varStatus="status">
 											<input type=hidden name="${w.wk_number}"
 												value="${w.wk_number}">
@@ -251,7 +255,7 @@ button:hover {
 										type="hidden" name="num" value="${num}"> <input
 										type="hidden" name="pwd" value="${pwd}"> <input
 										type="hidden" name="list" value="${wklist5}">
-									<table>
+									<table class = "wktable">
 										<c:forEach items="${wklist5}" var="w" varStatus="status">
 											<input type=hidden name="${w.wk_number}"
 												value="${w.wk_number}">

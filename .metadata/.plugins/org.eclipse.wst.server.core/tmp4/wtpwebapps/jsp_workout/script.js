@@ -9,26 +9,32 @@ function signup() {
 
 	if (i == '') {
 		alert("아이디를 입력해 주십시오.");
+		i.focus();
 		return false;
 	}
 	if (p == '') {
 		alert("비밀번호를 입력해 주십시오.");
+		p.focus();
 		return false;
 	}
 	if (p1 == '') {
 		alert("비밀번호 확인을 입력해 주십시오.");
+		p1.focus();
 		return false;
 	}
 	if (e == '') {
 		alert("이메일 주소를 입력해 주십시오.");
+		e.focus();
 		return false;
 	}
 
 	if (p != p1) {
 		alert("비밀번호가 일치하지 않습니다. 다시 확인해주세요.");
+		p.focus();
 		return false;
 	} else if (regex.test(e) == false) {
 		alert("올바른 이메일 형식이 아닙니다. 다시 확인해주세요.");
+		e.focus();
 		return false;
 	} else {
 		alert("회원가입이 완료 되었습니다.");
@@ -121,18 +127,22 @@ function update() {
 
 	if (n == '') {
 		alert("수정할 운동 이름을 입력해 주십시오.");
+		n.focus();
 		return false;
 	}
 	if (w == '') {
 		alert("수정할 운동 무게를 입력해 주십시오.");
+		w.focus();
 		return false;
 	}
 	if (r == '') {
 		alert("수정할 운동 횟수를 입력해 주십시오.");
+		r.focus();
 		return false;
 	}
 	if (s == '') {
 		alert("수정할 운동 세트를 입력해 주십시오.");
+		s.focus();
 		return false;
 	}
 

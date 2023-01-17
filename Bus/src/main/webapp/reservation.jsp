@@ -122,15 +122,18 @@
 		function selectBoxValue(value) {
 			var selval = document.getElementById('tck').value;
 			
-			if (selval != "no"){
-				var chrval = ${bus.charge};
-				var fee = chrval * selval;
+			if (selval != "no"){ // 티켓수가 0장이 아닐때,
+				var chrval = ${bus.charge}; // 버스 요금을 가져오고
+				var fee = chrval * selval; // 티켓수 와 버스 요금을 곱해준다.
 				
-				fee = Number(fee);
+				fee = Number(fee); // 앞에서 곱한 값을 숫자형태로 변환시켜준다.
 				
-				fee = fee.toLocaleString()
-				$('#testfee').text(fee + "원");
-				$('#fee').val(fee);
+				fee = fee.toLocaleString() 
+				// 검색해보니 ','을 기준으로 문자열을 바꿔 준다고 한다. 굳이 이걸 하는 이유는?
+						
+						
+				$('#testfee').text(fee + "원"); //jquery의 .text를 통해 id가 testfee인 아이의 값을 fee+"원"으로 바꿔준다.
+				$('#fee').val(fee); //jquery .val을 통해 id가 fee인 아이의 값을 fee로 바꿔준다.
 				
 			}
 			else{

@@ -155,7 +155,7 @@ public class wk_DAO {
 		System.out.println("user_num : " + user_num);
 		System.out.println("part : " + wk_part);
 		
-		String sql = "insert into workout values(wk_seq.nextval, to_char(sysdate + 9/24, 'YYYY-MM-DD HH24:MI:SS'), ?, "+user_num+")";
+		String sql = "insert into workout values(wk_seq.nextval, to_char(sysdate + 9/24, 'YYYY-MM-DD HH24:MI'), ?, "+user_num+")";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		
 		try {
